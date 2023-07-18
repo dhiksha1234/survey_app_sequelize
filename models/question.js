@@ -1,13 +1,13 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../config/database')
 
-const Question = sequelize.define("question",{
+const Question = sequelize.define("questions",{
     id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-    question: {
+    surveyQuestion: {
         type: Sequelize.TEXT,
     },
     createdAt: {

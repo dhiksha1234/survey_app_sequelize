@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "dhiksha",
+    "password": "Helloworld@123",
+    "database": "survey_app",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
