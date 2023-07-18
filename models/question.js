@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const sequelize = require('../ config/database')
+const sequelize = require('../config/database')
 
 const Question = sequelize.define("question",{
     id:{
@@ -8,9 +8,18 @@ const Question = sequelize.define("question",{
         primaryKey: true,
     },
     question: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
+    },
+    createdAt: {
         allowNull: false,
-    }
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+    },
+    updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+    },
 })
 
 module.exports = Question;

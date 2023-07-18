@@ -1,13 +1,17 @@
-const sequelize = require("./util/database")
+const sequelize = require("./config/database")
 const Question = require('./models/question')
 const Option = require('./models/option')
 const User = require('./models/user')
 
 const express = require('express')
+const cors = require('cors');
 
-const port = 3000
+const port = 8000
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 Question.hasMany(Option)
 Option.belongsTo(Question)
@@ -16,7 +20,7 @@ Option.belongsTo(Question)
 const surveyQuestion = require('./routes/questionRouter')
 app.use('/question', surveyQuestion)
 
-sequelize.sync().then((result) => {
+sequelize.sync({ alter: true }).then((result) => {
     console.log(result)
 })
 
