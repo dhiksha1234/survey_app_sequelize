@@ -1,16 +1,17 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up (queryInterface, Sequelize) {
-     
-    await queryInterface.createTable('questions', {
-      id: {
+
+    await queryInterface.createTable('options', {
+      optionId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      surveyQuestion: {
+      surveyOptions: {
         type: Sequelize.STRING,
       },
       createdAt: {
@@ -22,11 +23,13 @@ module.exports = {
         allowNull: false,
       },
     });
+    
   },
 
   async down (queryInterface, Sequelize) {
- 
-    await queryInterface.dropTable('questions');
 
+    await queryInterface.dropTable('options');
+
+     
   }
 };

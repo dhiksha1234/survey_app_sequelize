@@ -1,21 +1,22 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../config/database')
 
-const Response = sequelize.define("responses",{
-    responseId:{
+const Question_Option = sequelize.define("responses",{
+    questionOptionId:{
         type: Sequelize.INTEGER,
         primaryKey: true,
     },
-    userId: {
+    questionId: {
         type: Sequelize.INTEGER,
-        references: 'users', 
-        referencesKey: 'userId' 
+        references: 'questions', 
+        referencesKey: 'questionId' 
     },
-    questionOptionId: {
+    optionId: {
         type: Sequelize.INTEGER,
         references: 'options', 
         referencesKey: 'optionId' 
     }
+   
 })
 
-module.exports = Response;
+module.exports = Question_Option;
