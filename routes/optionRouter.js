@@ -1,9 +1,9 @@
 // router
 const express = require('express')
 const router = express.Router();
-const question = require('../controllers/questionController')
+const option = require('../controllers/optionController')
 
-router.get('/', question.getQuestions)
+router.get('/:id', option.getOptions)
 
 
 module.exports = router

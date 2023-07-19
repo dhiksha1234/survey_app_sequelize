@@ -11,8 +11,6 @@ module.exports = {
         { id: '3', surveyQuestion: 'You are a interested in Science', createdAt: new Date(), updatedAt: new Date() },
         { id: '4', surveyQuestion: "Do you know Newton's first law", createdAt: new Date(), updatedAt: new Date() },
         { id: '5', surveyQuestion: 'Do you like Algebra', createdAt: new Date(), updatedAt: new Date() },
-
-
       ], {});
   
   },
