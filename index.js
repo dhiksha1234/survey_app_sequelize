@@ -38,6 +38,9 @@ app.use('/response',surveyResponses)
 const surveyUser = require('./routes/userRouter')
 app.use('/user',surveyUser)
 
+const hasAssociation = Question.associations.hasOwnProperty('optionss');
+console.log(hasAssociation);
+
 
 sequelize.sync({ alter: true }).then((result) => {
 })

@@ -1,5 +1,6 @@
 const questionModel = require('../models/question')
 const optionModel = require('../models/option')
+const Question_Option = require('../models/question_option')
 
 // get all the questions
 const getQuestions = async (req, res) => {
@@ -15,20 +16,27 @@ const getQuestions = async (req, res) => {
 
 }
 
-// association 
+  
 
-
+// get the options based on question
 
 const getQuestionsOption = async (req, res) => {
+  try{
 
 const questionOption = await questionModel.findAll({
-  where: { questionId: 4 },
-  include: [{ model: optionModel }],
-})
+  // where: { questionId: 2 },
+  include: { 
+    model: optionModel,
+    // attributes: ['id', 'questionId', 'optionId'], 
+    // where: {questionId: 2}
+   },
+ })
+ console.log(questionOption)
   res.status(200).send(questionOption)
-  .catch((error) => {
+}
+  catch(error){
     console.error(error);
-  });
+  };
 }
 
 
