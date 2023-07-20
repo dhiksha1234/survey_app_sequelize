@@ -5,9 +5,7 @@ const userModel = require('../models/user')
 const getUsers = async (req, res) => {
 
     try{
-    let id = req.params.id;
     const users = await userModel.findAll({})
-    console.log("users",users)
     res.status(200).send(users)
     }
     catch(err){
@@ -16,6 +14,26 @@ const getUsers = async (req, res) => {
 
 }
 
+// post - add user
+
+const addUser = async (req, res) => {
+
+    let data = {
+        name: req.body.name
+    }
+
+    try{
+    const users = await userModel.create(data)
+    console.log(users)
+    res.status(200).send(users)
+    }
+    catch(err){
+        console.log("Cant add user",err)
+    }
+
+}
+
 module.exports = {
-    getUsers
+    getUsers,
+    addUser
 }
