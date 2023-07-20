@@ -13,6 +13,7 @@ const User = sequelize.define("user",{
     },
     isCompleted: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
     }
 })
 
