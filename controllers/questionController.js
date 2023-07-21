@@ -17,7 +17,7 @@ const getQuestions = async (req, res) => {
 
   
 
-// get the options based on question
+// get - questions and options mapping
 
 const getQuestionsOption = async (req, res) => {
   try{
@@ -26,24 +26,11 @@ const getQuestionsOption = async (req, res) => {
       // where: { questionId: 2 },
       include: {
         model: models.Option,
+        // where: { optionId : 3}
       }
     })
 
-    // const question = await questionModel.findByPk(1);
-    // console.log(question)
-    // const option = await optionModel.findByPk(3);
-    // console.log(option)
-
-    // const questionOption = await question.getOptions({
-    //   // where: { optionId: 3 }, // Select only the 'id' from the association table
-    //   // plain: true, // To get a single object instead of an array
-
-     // include: { 
-      //   model: models.Option,
-        // attributes: ['id', 'questionId', 'optionId'], 
-        // where: {questionId: 2}
-        
-    // });
+ 
   console.log(questionOption)
   res.status(200).send(questionOption)
 }
