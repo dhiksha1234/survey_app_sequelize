@@ -1,21 +1,43 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../config/database')
+'use strict';
+const {
+  Model
+} = require('sequelize');
+  
 
-const Response = sequelize.define("responses",{
-    // responseId:{
-    //     type: Sequelize.INTEGER,
-    //     primaryKey: true,
-    // },
-    // userId: {
-    //     type: Sequelize.INTEGER,
-    //     references: 'users', 
-    //     referencesKey: 'userId' 
-    // },
-    // questionOptionId: {
-    //     type: Sequelize.INTEGER,
-    //     references: 'question_options', 
-    //     referencesKey: 'questionOptionId' 
-    // }
-})
+module.exports = (sequelize, DataTypes) => {
+  class Response extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      Response.belongsTo(models.User, {
+            foreignKey: 'userId',
+            onDelete: 'cascade' 
+        });
+      Response.belongsTo(models.Question_Option, {
+            foreignKey: 'questionOptionId',
+            onDelete: 'cascade' 
 
-module.exports = Response;
+        });
+    }
+  }
+  Response.init({
+    responseId: {
+      type:DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    questionOptionId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
+   },
+   {
+    sequelize,
+    modelName: 'Response',
+    tableName: 'responses',
+    timestamps: false 
+
+  });
+  return Response;
+};

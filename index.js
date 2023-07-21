@@ -1,9 +1,5 @@
 const sequelize = require("./config/database")
-const Question = require('./models/question')
-const Option = require('./models/option')
-const Response = require('./models/response')
-const question_options = require('./models/question_option')
-const User = require('./models/user')
+
 
 const express = require('express')
 const cors = require('cors');
@@ -15,19 +11,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-//Association for questionOption Table
-Question.belongsToMany(Option, { through: question_options, foreignKey: 'optionId'})
-Option.belongsToMany(Question, { through: question_options, foreignKey: 'questionId'})
-
-//Association for Response Table
-
-Response.belongsTo(User, {
-    foreignKey: 'userId',
-});
-Response.belongsTo(question_options, {
-    foreignKey: 'questionOptionId',
-});
-
 // Routers
 const surveyQuestion = require('./routes/questionRouter')
 app.use('/question', surveyQuestion)
@@ -38,11 +21,11 @@ app.use('/response',surveyResponses)
 const surveyUser = require('./routes/userRouter')
 app.use('/user',surveyUser)
 
-const hasAssociation = Question.associations.hasOwnProperty('optionss');
-console.log(hasAssociation);
+// const hasAssociation = Question.associations.hasOwnProperty('optionques');
+// console.log(hasAssociation);
 
 
-sequelize.sync({ alter: true }).then((result) => {
+sequelize.sync({ alter : true }).then((result) => {
 })
 
 app.listen(port,()=>{

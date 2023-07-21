@@ -1,23 +1,42 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../config/database')
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Question_Option extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  Question_Option.init({
+    questionOptionId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    } ,
+    questionId: {
+      type: DataTypes.INTEGER,
+      model: 'questions', 
+      Key: 'questionId' 
+    },
+    optionId: {
+      type: DataTypes.INTEGER,
+      model: 'options', 
+      Key: 'optionId' 
+    },
+ 
 
-const Question_Option = sequelize.define("question_options",{
-    // questionOptionId:{
-    //     type: Sequelize.INTEGER,
-    //     primaryKey: true,
-    // },
-    // questionId: {
-    //     type: Sequelize.INTEGER,
-    //     references: 'questions', 
-    //     referencesKey: 'questionId' 
-    // },
-    // optionId: {
-    //     type: Sequelize.INTEGER,
-    //     references: 'options', 
-    //     referencesKey: 'optionId' 
-    // }
-   
-})
 
+  }, {
+    sequelize,
+    modelName: 'Question_Option',
+    tableName:'question_options',
+    timestamps: false 
 
-module.exports = Question_Option;
+  });
+  return Question_Option;
+};

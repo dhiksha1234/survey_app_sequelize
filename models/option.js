@@ -1,26 +1,33 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../config/database')
-
-const Option = sequelize.define("options",{
+'use strict';
+const {
+  Model
+} = require('sequelize');
+ 
+module.exports = (sequelize, DataTypes) => {
+  class Option extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      Option.belongsToMany(models.Question , 
+       { through: models.Question_Option, foreignKey: 'questionId' , onDelete: 'cascade' })
+    }
+  }
+  Option.init({
     optionId:{
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
+     type : DataTypes.INTEGER,
+     autoIncrement: true,
+     primaryKey: true
     },
-    surveyOptions: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("NOW"),
-    },
-    updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("NOW"),
-    },
-})
-
-module.exports = Option;
+    
+    surveyOptions: DataTypes.STRING,
+   }, {
+    sequelize,
+    modelName: 'Option',
+    tableName: 'options',
+    timestamps: false,
+  });
+  return Option;
+};

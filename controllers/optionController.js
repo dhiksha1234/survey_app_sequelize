@@ -1,12 +1,12 @@
-const optionModel = require('../models/option')
+const db = require('../models/index')
+// const models = require('../models/index')
 
 
 // get the options for the question
 const getOptions = async (req, res) => {
 
     try{
-    let id = req.params.id;
-    const options = await optionModel.findAll({})
+    const options = await db.Option.findAll()
     console.log("option",options)
     res.status(200).send(options)
     }

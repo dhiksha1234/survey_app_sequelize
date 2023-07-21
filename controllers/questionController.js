@@ -1,13 +1,12 @@
-const questionModel = require('../models/question')
-const optionModel = require('../models/option')
-const Question_Option = require('../models/question_option')
+ const models = require('../models/index')
+
 
 // get all the questions
 const getQuestions = async (req, res) => {
 
     try{
 
-    const question = await questionModel.findAll({})
+    const question = await models.Question.findAll()
     res.status(200).send(question)
     }
     catch(err){
@@ -23,15 +22,29 @@ const getQuestions = async (req, res) => {
 const getQuestionsOption = async (req, res) => {
   try{
 
-const questionOption = await questionModel.findAll({
-  // where: { questionId: 2 },
-  include: { 
-    model: optionModel,
-    // attributes: ['id', 'questionId', 'optionId'], 
-    // where: {questionId: 2}
-   },
- })
- console.log(questionOption)
+    const questionOption = await models.Question.findAll({
+      // where: { questionId: 2 },
+      include: {
+        model: models.Option,
+      }
+    })
+
+    // const question = await questionModel.findByPk(1);
+    // console.log(question)
+    // const option = await optionModel.findByPk(3);
+    // console.log(option)
+
+    // const questionOption = await question.getOptions({
+    //   // where: { optionId: 3 }, // Select only the 'id' from the association table
+    //   // plain: true, // To get a single object instead of an array
+
+     // include: { 
+      //   model: models.Option,
+        // attributes: ['id', 'questionId', 'optionId'], 
+        // where: {questionId: 2}
+        
+    // });
+  console.log(questionOption)
   res.status(200).send(questionOption)
 }
   catch(error){
