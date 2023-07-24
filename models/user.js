@@ -14,9 +14,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    userId: DataTypes.INTEGER,
+    userId: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      autoIncrement:true
+    },
     name: DataTypes.STRING,
-    isCompleted: DataTypes.BOOLEAN,
+    isCompleted: {
+      type:DataTypes.BOOLEAN,
+      defaultValue:false,
+    },
    }, {
     sequelize,
     modelName: 'User',

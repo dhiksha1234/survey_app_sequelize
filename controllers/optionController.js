@@ -6,7 +6,9 @@ const db = require('../models/index')
 const getOptions = async (req, res) => {
 
     try{
-    const options = await db.Option.findAll()
+    const options = await db.Option.findAll({
+        
+    })
     console.log("option",options)
     res.status(200).send(options)
     }

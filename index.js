@@ -1,8 +1,10 @@
 const sequelize = require("./config/database")
-
-
 const express = require('express')
 const cors = require('cors');
+const surveyQuestion = require('./routes/questionRouter')
+const surveyOption = require('./routes/optionRouter')
+const surveyResponses = require('./routes/responseRouter')
+const surveyUser = require('./routes/userRouter')
 
 const port = 8000
 
@@ -11,18 +13,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routers
-const surveyQuestion = require('./routes/questionRouter')
-app.use('/question', surveyQuestion)
-const surveyOption = require('./routes/optionRouter')
-app.use('/option',surveyOption)
-const surveyResponses = require('./routes/responseRouter')
-app.use('/response',surveyResponses)
-const surveyUser = require('./routes/userRouter')
-app.use('/user',surveyUser)
+const apiRoute = express.Router();
+ 
+apiRoute.use('/question', surveyQuestion)
+apiRoute.use('/option',surveyOption)
+apiRoute.use('/response',surveyResponses)
+apiRoute.use('/user',surveyUser)
 
-// const hasAssociation = Question.associations.hasOwnProperty('optionques');
-// console.log(hasAssociation);
+ app.use('/api/v1', apiRoute);
+
 
 
 sequelize.sync({ alter : true }).then((result) => {

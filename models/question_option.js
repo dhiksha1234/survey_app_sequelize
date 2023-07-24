@@ -11,6 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Question_Option.belongsTo(models.Question, {
+        foreignKey: 'questionId',
+        onDelete: 'cascade'
+      });
+      
+      Question_Option.belongsTo(models.Option, {
+        foreignKey: 'optionId',
+        onDelete: 'cascade'
+      });
     }
   }
   Question_Option.init({

@@ -7,7 +7,9 @@
     "sequelize-cli": "^6.6.1"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "migrate": "sequelize db:migrate",
+    "seeders": "sequelize db:seed:all"
   },
   "name": "survey-app-sequelize",
   "version": "1.0.0",

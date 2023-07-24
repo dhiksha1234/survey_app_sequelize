@@ -23,13 +23,14 @@ const getQuestionsOption = async (req, res) => {
   try{
 
     const questionOption = await models.Question.findAll({
-      // where: { questionId: 2 },
-      include: {
+       include: [ {
         model: models.Option,
-        // where: { optionId : 3}
-      }
+       }
+    ]
     })
-
+    const questionOptionId = questionOption[0].Options[0].Question_Option.questionOptionId;
+    console.log("Question Option ID:", questionOptionId);
+ 
  
   console.log(questionOption)
   res.status(200).send(questionOption)
