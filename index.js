@@ -1,4 +1,4 @@
-const sequelize = require("./config/database")
+const db = require("./models/index")
 const express = require('express')
 const cors = require('cors');
 const surveyQuestion = require('./routes/questionRouter')
@@ -24,7 +24,7 @@ apiRoute.use('/user',surveyUser)
 
 
 
-sequelize.sync({ alter : true }).then((result) => {
+db.sequelize.sync({ alter : true }).then((result) => {
 })
 
 app.listen(port,()=>{

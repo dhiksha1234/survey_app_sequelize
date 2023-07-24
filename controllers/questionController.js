@@ -23,8 +23,10 @@ const getQuestionsOption = async (req, res) => {
   try{
 
     const questionOption = await models.Question.findAll({
+      where: { questionId : req.params.questionId},
        include: [ {
         model: models.Option,
+        where: { optionId : req.params.optionId}
        }
     ]
     })
