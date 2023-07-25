@@ -15,9 +15,28 @@ const getQuestions = async (req, res) => {
 
 }
 
+// get - questions and options mapping
+
+const getQuesOption = async (req, res) => {
+  try{
+
+    const questionOption = await models.Question.findAll({
+        include: [ {
+        model: models.Option,
+        }
+    ]
+    })
+  
+    res.status(200).send(questionOption)
+}
+  catch(error){
+    console.error(error);
+  };
+}
+
   
 
-// get - questions and options mapping
+// get - questionOption for a particular ID 
 
 const getQuestionsOption = async (req, res) => {
   try{
@@ -30,12 +49,8 @@ const getQuestionsOption = async (req, res) => {
        }
     ]
     })
-    const questionOptionId = questionOption[0].Options[0].Question_Option.questionOptionId;
-    console.log("Question Option ID:", questionOptionId);
- 
- 
-  console.log(questionOption)
-  res.status(200).send(questionOption)
+  
+    res.status(200).send(questionOption)
 }
   catch(error){
     console.error(error);
@@ -45,5 +60,6 @@ const getQuestionsOption = async (req, res) => {
 
 module.exports = {
     getQuestions,
-    getQuestionsOption
+    getQuestionsOption,
+    getQuesOption
 }

@@ -5,8 +5,8 @@ const surveyQuestion = require('./routes/questionRouter')
 const surveyOption = require('./routes/optionRouter')
 const surveyResponses = require('./routes/responseRouter')
 const surveyUser = require('./routes/userRouter')
-
-const port = 8000
+ 
+const port = process.env.PORT || 8000
 
 const app = express();
 
@@ -20,7 +20,7 @@ apiRoute.use('/option',surveyOption)
 apiRoute.use('/response',surveyResponses)
 apiRoute.use('/user',surveyUser)
 
- app.use('/api/v1', apiRoute);
+app.use('/api/v1', apiRoute);
 
 
 
@@ -28,5 +28,5 @@ db.sequelize.sync({ alter : true }).then((result) => {
 })
 
 app.listen(port,()=>{
-    console.log('Connected on 8000')
+    console.log(`Connected on ${port}` )
 })

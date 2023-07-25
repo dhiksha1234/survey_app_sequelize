@@ -11,7 +11,7 @@ Give `yarn install` to install all the dependencies
 
 ### SETTING UP
 
-For configuring the mysql, go to the config.json file and add your credentials
+For configuring the mysql, go to the config.js file and add your credentials
 
 To run the migration , give the command - `yarn migrate`
 
