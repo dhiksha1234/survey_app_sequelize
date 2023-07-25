@@ -1,7 +1,7 @@
 const models = require('../models/index')
 
 
-// get the options for the question
+// get all the options 
 const getOptions = async (req, res) => {
 
     try{
@@ -9,7 +9,7 @@ const getOptions = async (req, res) => {
      res.status(200).send(options)
     }
     catch(err){
-        console.log("Options not found",err)
+        console.error("Options not found")
     }
 
 }

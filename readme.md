@@ -1,4 +1,4 @@
- 
+  
  
 ### DESCRIPTION
 
@@ -11,7 +11,15 @@ Give `yarn install` to install all the dependencies
 
 ### SETTING UP
 
-For configuring the mysql, go to the config.js file and add your credentials
+For configuring the mysql with your node application, 
+
+Create an env file with 
+
+`MYSQL_HOST = localhost
+ MYSQL_USER = your username
+ MYSQL_PASSWORD = your password
+ MYSQL_DATABASE = your database
+ PORT = 8000`
 
 To run the migration , give the command - `yarn migrate`
 
@@ -35,6 +43,9 @@ Running on the port - 8000
 
 
 >POST http://localhost:8000/api/v1/response - to post the responses of the user
+
+
+>POST http://localhost:8000/api/v1/user  - to create a user
 
 ### FINAL STEP
 

@@ -10,7 +10,7 @@ const getQuestions = async (req, res) => {
     res.status(200).send(question)
     }
     catch(err){
-        console.log(err)
+        console.error("Questions not found")
     }
 
 }
@@ -30,7 +30,7 @@ const getQuesOption = async (req, res) => {
     res.status(200).send(questionOption)
 }
   catch(error){
-    console.error(error);
+    console.error("questions and options not mapped ");
   };
 }
 
@@ -53,7 +53,7 @@ const getQuestionsOption = async (req, res) => {
     res.status(200).send(questionOption)
 }
   catch(error){
-    console.error(error);
+    console.error("Particular Question_Option is not found");
   };
 }
 

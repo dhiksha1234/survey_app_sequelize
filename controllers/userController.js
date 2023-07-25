@@ -1,6 +1,26 @@
 const models = require('../models/index')
 
 
+// post - add user
+
+const addUser = async (req, res) => {
+
+    let data = {
+        name: req.body.name
+    }
+
+    try{
+    const users = await models.User.create(data)
+    console.log(users)
+    res.status(200).send(users)
+    }
+    catch(err){
+        console.error("Cant add user")
+    }
+
+}
+
+
 // update isComplete
 
 const updateUsers = async (req, res) => {
@@ -31,5 +51,6 @@ const updateUsers = async (req, res) => {
 
 
 module.exports = {
-    updateUsers
+    updateUsers,
+    addUser
 }
