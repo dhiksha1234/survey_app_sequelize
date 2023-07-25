@@ -34,11 +34,13 @@ Running on the port - 8000
 
 >GET  http://localhost:8000/api/v1/question - to get the list of the question
 
+>GET  http://localhost:8000/api/v1/option - to get the list of the option
+
+>GET http://localhost:8000/api/v1/question/option - to get all the mappings of question and options
 
 >GET  http://localhost:8000/api/v1/response - to get the responses of the user
 
->GET  http://localhost:8000/api/v1/option - to get the list of the option
-
+ 
 >GET  http://localhost:8000/api/v1/question/option/:questionId/:optionId - to get the questionOptionId
 
 
