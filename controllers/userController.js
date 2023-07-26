@@ -5,13 +5,12 @@ const models = require('../models/index')
 
 const addUser = async (req, res) => {
 
-    let data = {
+    let userName = {
         name: req.body.name
     }
 
     try{
-    const users = await models.User.create(data)
-    console.log(users)
+    const users = await models.User.create(userName)
     res.status(200).send(users)
     }
     catch(err){
@@ -39,8 +38,7 @@ const updateUsers = async (req, res) => {
           const users = await models.User.findAll({
             where:{ userId : req.params.userId}
         })
-        console.log(users)
-
+ 
         res.status(200).send("user completed the survey")
     }
     catch(err){
