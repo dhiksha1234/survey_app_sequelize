@@ -15,41 +15,15 @@ const getQuestions = async (req, res) => {
 
 }
 
-// get - questions and options mapping
-
-const getQuesOption = async (req, res) => {
-  try{
-
-    const questionOption = await models.Question.findAll({
-        include: [ {
-        model: models.Option,
-        }
-    ]
-    })
-  
-    res.status(200).send(questionOption)
-}
-  catch(error){
-      return(err);
-   };
-}
-
-  
 
 // get - questionOption for a particular ID 
 
 const getQuestionsOption = async (req, res) => {
   try{
 
-    const questionOption = await models.Question.findAll({
-      where: { questionId : req.params.questionId},
-       include: [ {
-        model: models.Option,
-        where: { optionId : req.params.optionId}
-       }
-    ]
+    const questionOption = await models.Question_Option.findOne({
+      where: { questionId : req.params.questionId, optionId : req.params.optionId},
     })
-  
     res.status(200).send(questionOption)
 }
   catch(error){
@@ -60,6 +34,5 @@ const getQuestionsOption = async (req, res) => {
 
 module.exports = {
     getQuestions,
-    getQuestionsOption,
-    getQuesOption
+    getQuestionsOption
 }
