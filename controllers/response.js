@@ -12,9 +12,6 @@ const getResponses = async (req, res) => {
             models.Question, models.Option
           ]
           },
-        {
-            model: models.User,
-        }
     ]})
     res.status(200).send(response)
     }
