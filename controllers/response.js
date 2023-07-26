@@ -19,7 +19,7 @@ const getResponses = async (req, res) => {
     res.status(200).send(response)
     }
     catch(err){
-        console.error("Responses are not fetched")
+        return(err)
     }
 
 }
@@ -34,9 +34,9 @@ const createResponse = async (req, res) => {
       }
   
        res.status(200).send("Responses saved successfully.");
+       
     } catch (error) {
-       console.error("Responses are not saved");
-      
+        return(err)
     }
 }
 

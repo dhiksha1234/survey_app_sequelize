@@ -9,7 +9,7 @@ const getOptions = async (req, res) => {
      res.status(200).send(options)
     }
     catch(err){
-        console.error("Options not found")
+        return(err)
     }
 
 }

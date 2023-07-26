@@ -1,10 +1,10 @@
 const db = require("./models/index")
 const express = require('express')
 const cors = require('cors');
-const surveyQuestion = require('./routes/questionRouter')
-const surveyOption = require('./routes/optionRouter')
-const surveyResponses = require('./routes/responseRouter')
-const surveyUser = require('./routes/userRouter')
+const surveyQuestion = require('./routes/question')
+const surveyOption = require('./routes/option')
+const surveyResponses = require('./routes/response')
+const surveyUser = require('./routes/user')
  
 const port = process.env.PORT || 8000
 
@@ -24,7 +24,7 @@ app.use('/api/v1', apiRoute);
 
 
 
-db.sequelize.sync({ alter : true }).then((result) => {
+db.sequelize.sync({ alter : true , logging: false}).then((result) => {
 })
 
 app.listen(port,()=>{

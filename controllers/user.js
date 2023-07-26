@@ -14,7 +14,7 @@ const addUser = async (req, res) => {
     res.status(200).send(users)
     }
     catch(err){
-        console.error("Cant add user")
+        return(err)
     }
 
 }
@@ -42,7 +42,7 @@ const updateUsers = async (req, res) => {
         res.status(200).send("user completed the survey")
     }
     catch(err){
-        console.error("Updated the users - isComplete")
+        return(err)
     }
 
 }
