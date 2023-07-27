@@ -1,7 +1,7 @@
  const models = require('../models/index')
 
 
-// get all the questions
+// get all the questions and options
 const getQuestionAndOption = async (req, res) => {
 
     try{
