@@ -1,7 +1,7 @@
 const db = require("./models/index")
 const express = require('express')
 const cors = require('cors');
-const surveyQuestion = require('./routes/questionOption')
+const surveyForm = require('./routes/questionOption')
 const surveyResponses = require('./routes/response')
 const surveyUser = require('./routes/user')
  
@@ -14,7 +14,7 @@ app.use(express.json());
 
 const apiRoute = express.Router();
  
-apiRoute.use('/form', surveyQuestion)
+apiRoute.use('/form', surveyForm)
 apiRoute.use('/response',surveyResponses)
 apiRoute.use('/user',surveyUser)
 

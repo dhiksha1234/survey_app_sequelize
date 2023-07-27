@@ -1,6 +1,6 @@
 const models = require("../models/index");
 
-// get - all response
+// get - all response from response table
 const getResponses = async (req, res) => {
   try {
     const response = await models.Response.findAll({
@@ -13,37 +13,11 @@ const getResponses = async (req, res) => {
     });
     res.status(200).send(response);
   } catch (err) {
-    return err;
+      throw new Error("Error in fetching responses",err);
   }
 };
 
-// post call for the responses
-const createResponse = async (req, res) => {
-  const responsesArray = req.body;
-
-  try {
-    for (const response of responsesArray) {
-      const questionOption = await models.Question_Option.findOne({
-        where: { questionId: response.questionId, optionId: response.optionId },
-      });
-
-      if (!questionOption) {
-        continue;
-      }
-
-      await models.Response.create({
-        questionOptionId: questionOption.questionOptionId,
-        userId: response.userId,
-      });
-    }
-
-    res.status(200).send(responsesArray);
-  } catch (error) {
-    return err;
-  }
-};
 
 module.exports = {
   getResponses,
-  createResponse,
 };

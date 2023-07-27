@@ -35,10 +35,10 @@ Running on the port - 8000
 >GET  http://localhost:8000/api/v1/form - to get the list of the question and options
 
 
+>POST http://localhost:8000/api/v1/form - to post the responses of the user
+
+
 >GET  http://localhost:8000/api/v1/response - to get the responses of the user
-
-
->POST http://localhost:8000/api/v1/response - to post the responses of the user
 
 
 >POST http://localhost:8000/api/v1/user  - to create a user
