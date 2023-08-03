@@ -1,25 +1,30 @@
-const sequelize = require("./util/database")
-const Question = require('./models/question')
-const Option = require('./models/option')
-const User = require('./models/user')
-
+const db = require("./models/index")
 const express = require('express')
-
-const port = 3000
+const cors = require('cors');
+const surveyForm = require('./routes/questionOption')
+const surveyResponses = require('./routes/response')
+const surveyUser = require('./routes/user')
+ 
+const port = process.env.PORT || 8000
 
 const app = express();
 
-Question.hasMany(Option)
-Option.belongsTo(Question)
+app.use(cors());
+app.use(express.json());
 
-// routers
-const surveyQuestion = require('./routes/questionRouter')
-app.use('/question', surveyQuestion)
+const apiRoute = express.Router();
+ 
+apiRoute.use('/form', surveyForm)
+apiRoute.use('/response',surveyResponses)
+apiRoute.use('/user',surveyUser)
 
-sequelize.sync().then((result) => {
-    console.log(result)
+app.use('/api/v1', apiRoute);
+
+
+
+db.sequelize.sync({ alter : true , logging: false}).then((result) => {
 })
 
 app.listen(port,()=>{
-    console.log('Connected on 3000')
+    console.log(`Connected on ${port}` )
 })
